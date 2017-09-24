@@ -17,7 +17,7 @@
     <v-toolbar dark>
       <router-link tag="div" id="main-title" :to="{ name: 'homepage' }">
         <v-toolbar-title>Linkin Park Tribute</v-toolbar-title>
-        <img id="lp-logo" src="../../assets/lp-logo-min.png" alt="Linkin Park Logo">
+        <img id="lp-logo" src="../../assets/lp-logo-sm.png" alt="Linkin Park Logo">
       </router-link>
       <v-spacer></v-spacer>
       <v-toolbar-items>
