@@ -57,8 +57,9 @@ export const routes = [
     component: AlbumList
   },
   {
-    path: '/albums/:album',
+    path: '/album/:album',
     name: 'album',
+    props: true,
     component: Album
   },
 
@@ -70,6 +71,7 @@ export const routes = [
   {
     path: '/song/:song',
     name: 'song',
+    props: true,
     component: Song
   }
 ];

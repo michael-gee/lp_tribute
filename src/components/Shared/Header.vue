@@ -4,7 +4,7 @@
     <v-navigation-drawer v-model="drawerOpened" enable-resize-watcher temporary dark>
 
       <v-list>
-        <router-link tag="v-list-tile" v-for="item in menuItems" :to="{ name:item.route}">
+        <router-link tag="v-list-tile" v-for="item in menuItems" :key="item.route" :to="{ name:item.route}">
           <v-list-tile-action>
             <v-icon dark>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -17,7 +17,7 @@
     <v-toolbar dark>
       <router-link tag="div" id="main-title" :to="{ name: 'homepage' }">
         <v-toolbar-title>Linkin Park Tribute</v-toolbar-title>
-        <img id="lp-logo" src="../../assets/lp-logo-sm.png" alt="Linkin Park Logo">
+        <img id="lp-logo" src="../../assets/logos/lp-logo-sm.png" alt="Linkin Park Logo">
       </router-link>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -61,5 +61,10 @@
     #lp-logo {
       width: 30px;
       margin-left: 5px;
+    }
+    @media screen and (max-width: 736px) {
+      #main-title {
+        margin: 0;
+      }
     }
 </style>

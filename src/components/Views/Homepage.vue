@@ -14,21 +14,30 @@
         </v-layout>
       </section>
 
-      <section id="featured-albums">
+      <section ref="albums" id="featured-albums">
+        <h3 id="albums-title">Featured Albums</h3>
+        <div id="albums-wrapper">
+          <div v-for="album in featuredAlbums" :key="album.param" class="album-container">
+            <router-link :to="{ name: album.location, params: { album: album.param } }">
+              <img class="album-img" :src="album.image" :alt="album.alt">
+            </router-link>
+          </div>
+        </div>
 
+        <v-btn @click.native="$router.push('/albums')" id="albums-btn" large>See All Albums &#10140;</v-btn>
       </section>
 
-      <section ref="songs" id="featured-songs">
+      <section id="featured-songs">
         <h3 id="songs-title">Featured Songs</h3>
         <iframe id="featured-iframe" src="https://www.youtube.com/embed/Tm8LGxTLtQk" frameborder="0" allowfullscreen></iframe>
 
         <h4 id="other-features-title">Other Featured Songs...</h4>
 
-        <v-layout id="other-featured-container" row justify-space-around>
-          <router-link tag="div" v-for="(song, index) in featuredSongs" to="/albums" class="other-featured-wrapper">
-            <img class="featured-song-img" src="../../assets/lp-logo-md.png" :alt="song.name">
-            <h6>{{ song.name }}</h6>
-            <h6>{{ song.year }}</h6>
+        <v-layout id="other-featured-container">
+          <router-link tag="div" v-for="(song, index) in featuredSongs" to="/albums" :key="song.id" class="other-featured-wrapper">
+            <img class="featured-song-img" src="../../assets/logos/lp-logo-md.png" :alt="song.name">
+            <div class="featured-info">{{ song.name }}</div>
+            <div style="margin-bottom: 25px;" class="featured-info">{{ song.year }}</div>
           </router-link>
         </v-layout>
       </section>
@@ -41,16 +50,42 @@
     data() {
       return {
         featuredSongs: [
-          { name: 'In The End', year: 2000 },
-          { name: 'Numb', year: 2003 },
-          { name: 'Breaking the Habit', year: 2004 },
-          { name: 'Leave Out All the Rest', year: 2008 }
+          { name: 'In The End', year: 2000, id: 'in-the-end' },
+          { name: 'Numb', year: 2003, id: 'numb' },
+          { name: 'Breaking the Habit', year: 2004, id: 'breaking-the-habit' },
+          { name: 'Leave Out All the Rest', year: 2008, id: 'leave-out-all-the-rest' }
+        ],
+        featuredAlbums: [
+          {
+            alt: 'Meteora Album Cover',
+            location: 'album',
+            param: 'meteora',
+            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fmeteora.jpg?alt=media&token=cebc1895-153c-4346-9daa-b2eff7cd955f'
+          },
+          {
+            alt: 'Hybrid Theory Album Cover',
+            location: 'album',
+            param: 'hybrid-theory',
+            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fhybrid-theory.jpg?alt=media&token=d1d726b5-83bb-4e32-a3ed-f8be7373f1fd'
+          },
+          {
+            alt: 'One More Light Album Cover',
+            location: 'album',
+            param: 'one-more-light',
+            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fone-more-light.jpg?alt=media&token=7f17b3c5-a9ae-477e-98ff-e7ebace10052'
+          },
+          {
+            alt: 'Minutes To Midnight Album Cover',
+            location: 'album',
+            param: 'minutes-to-midnight',
+            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fminutes-to-midnight.jpg?alt=media&token=8a5cf04f-0b4a-4002-9459-e68cecf3726d'
+          }
         ]
       }
     },
     methods: {
       pageScroll() {
-        this.$refs.songs.scrollIntoView({block: "start", behaivor: 'smooth'});
+        this.$refs.albums.scrollIntoView({block: "start", behaivor: 'smooth'});
       }
     }
   }
@@ -75,7 +110,7 @@
     background-image: linear-gradient(
     rgba(0, 0, 0, .15),
     rgba(0, 0, 0, .15)
-    ), url('../../assets/chester-min.jpg');
+    ), url('../../assets/layout/chester.jpg');
   }
     #homepage-message {
       text-align: center;
@@ -87,33 +122,59 @@
       position: absolute;
     }
 
-  /* ALBUMBS SECTION ------- DO THIS SECTION FIRST!!!!!!!!!! */
+  /* ALBUMBS SECTION */
+  #featured-albums {
+    background-color: #eee;
+    color: black;
+    text-align: center;
+    padding: 50px 0;
+  }
+  #albums-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+    .album-container {
+      width: 45%;
+      margin: 50px 0;
+    }
+    .album-img {
+      border-radius: 5px;
+    }
+  #albums-btn {
+    font-family: arial;
+    font-style: normal;
+    font-size: 1.5em;
+    margin: 25px 0;
+  }
 
   /* SONGS SECTION */
   #featured-songs {
     display: flex;
     flex-direction: column;
-  }
-  #songs-title {
     text-align: center;
     padding-top: 50px;
   }
   #featured-iframe {
     width: 100%;
-    height: 600px;
+    height: 650px;
     margin: 25px auto;
   }
   #other-features-title {
+    font-size: 2.4em;
     margin-top: 25px;
     text-align: center;
   }
   #other-featured-container {
-    width: 1050px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     margin: 25px auto;
     text-align: center;
   }
   .other-featured-wrapper {
     cursor: pointer;
+    margin: 0 25px;
   }
     .other-featured-wrapper:hover {
       text-decoration: underline;
@@ -123,6 +184,9 @@
     width: 175px;
     margin-bottom: 10px;
   }
+    .featured-info {
+      font-size: 1.5em;
+    }
 
   @media screen and (max-width: 1200px) {
     #intro {
@@ -130,13 +194,39 @@
       background-image: linear-gradient(
       rgba(0, 0, 0, .45),
       rgba(0, 0, 0, .45)
-      ), url('../../assets/chester-min.jpg');
+      ), url('../../assets/layout/chester.jpg');
+    }
+    #featured-iframe {
+      height: 525px;
+    }
+  }
+  /* IPAD */
+  @media screen and (max-width: 768px) {
+    #intro {
+      height: calc(100vh - 56px);
+    }
+    /* ALBUMS SECTION */
+    #featured-albums, #featured-songs {
+      padding: 25px 0;
+    }
+    #featured-iframe {
+      height: 300px;
+    }
+    #albums-wrapper {
+      justify-content: space-around;
+    }
+    .album-container {
+      margin: 25px 0;
+    }
+    /* SONGS SECTION */
+    #other-featured-container {
+      flex-direction: column;
     }
   }
   /* PHONE */
-  @media screen and (max-width: 736px) {
-    #intro {
-      height: calc(100vh - 56px);
+  @media screen and (max-width: 480px) {
+    .featured-song-img {
+      width: 100px;
     }
   }
 </style>
