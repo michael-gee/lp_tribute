@@ -106,4 +106,13 @@
       width: 100%;
     }
   }
+  /* PHONE */
+  @media screen and (max-width: 600px) {
+    #album-title {
+      padding: 10px 0;
+    }
+    #album-img {
+      width: 225px;
+    }
+  }
 </style>

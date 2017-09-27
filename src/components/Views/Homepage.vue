@@ -46,6 +46,24 @@
         </v-layout>
       </section>
 
+      <section id="extra-container">
+        <h4>Don't know what song to listen to? Generate Random Song</h4>
+        <v-btn class="random-btn" large>Random Song &#10140;</v-btn>
+        <h4>Other Links</h4>
+        <v-btn @click="$router.push('/tribute')" class="random-btn" large>Tribute Page</v-btn>
+        <v-btn @click="$router.push('/other')" class="random-btn" large>More Linkin Park</v-btn>
+        <v-btn class="random-btn" large>Star On Github</v-btn>
+        <v-btn href="https://www.michaelgee.me/contact/" target="_blank" class="random-btn" large>Provide Feedback</v-btn>
+        <br>
+
+        <v-btn @click="backToTop" fab dark>
+          <v-icon dark>arrow_drop_up</v-icon>
+        </v-btn>
+      </section>
+
+      <section id="footer">
+        <p id="footer-text">Coded By Michael Gee - 2017</p>
+      </section>
     </div>
 </template>
 
@@ -54,10 +72,10 @@
     data() {
       return {
         featuredSongs: [
-          { name: 'In The End', year: 2000, id: 'in-the-end' },
           { name: 'Numb', year: 2003, id: 'numb' },
-          { name: 'Breaking the Habit', year: 2004, id: 'breaking-the-habit' },
-          { name: 'Leave Out All the Rest', year: 2008, id: 'leave-out-all-the-rest' }
+          { name: 'Leave Out All the Rest', year: 2008, id: 'leave-out-all-the-rest' },
+          { name: "Until It's Gone", year: 2014, id: 'until-its-gone' },
+          { name: 'Breaking the Habit', year: 2004, id: 'breaking-the-habit' }
         ],
         featuredAlbums: [
           {
@@ -90,6 +108,12 @@
     methods: {
       pageScroll() {
         this.$refs.albums.scrollIntoView({block: "start", behaivor: 'smooth'});
+      },
+      backToTop() {
+        console.log(this);
+      },
+      generateSong(){
+
       }
     }
   }
@@ -98,6 +122,8 @@
 <style scoped>
   #homepage-container {
     width: 100%;
+  }
+  #intro, #featured-albums, #featured-songs {
     font-family: serif;
     font-style: italic;
   }
@@ -191,6 +217,24 @@
     .featured-info {
       font-size: 1.5em;
     }
+  /* EXTRAS SECTION */
+  #extra-container {
+    padding: 25px 0;
+    background-color: white;
+    color: black;
+    text-align: center;
+  }
+    .random-btn {
+      margin-bottom: 25px;
+      font-size: 1.2em;
+    }
+
+  #footer-text {
+    margin: 0;
+    font-size: 1.3em;
+    text-align: center;
+    padding: 10px 0;
+  }
 
   @media screen and (max-width: 1200px) {
     #intro {
@@ -229,8 +273,15 @@
   }
   /* PHONE */
   @media screen and (max-width: 600px) {
+    #featured-songs {
+      padding-bottom: 0;
+    }
+    #other-features-title {
+      margin: 5px 0 0 0;
+    }
     .featured-song-img {
       width: 100px;
+      margin: 0;
     }
     #featured-iframe {
       height: 250px;

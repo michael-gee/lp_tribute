@@ -1,8 +1,7 @@
 <template lang="html">
   <header>
 
-    <v-navigation-drawer v-model="drawerOpened" enable-resize-watcher temporary dark>
-
+    <v-navigation-drawer v-if="!isDesktop" v-model="drawerOpened" enable-resize-watcher temporary dark>
       <v-list>
         <router-link tag="v-list-tile" v-for="item in menuItems" :key="item.route" :to="{ name:item.route}">
           <v-list-tile-action>
@@ -20,12 +19,13 @@
         <img id="lp-logo" src="../../assets/logos/lp-logo-sm.png" alt="Linkin Park Logo">
       </router-link>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn @click="$router.push('/albums')" dark flat class="hidden-xs-only">Albums</v-btn>
-        <v-btn @click="$router.push('/tribute')" dark flat class="hidden-xs-only">Tribute</v-btn>
-        <v-btn @click="$router.push('/other')" dark flat class="hidden-xs-only">Other</v-btn>
+      <v-toolbar-items v-if="isDesktop">
+        <v-btn @click="$router.push('/albums')" dark flat>Albums</v-btn>
+        <v-btn @click="$router.push('/tribute')" dark flat>Tribute</v-btn>
+        <v-btn @click="$router.push('/other')" dark flat>More LP</v-btn>
       </v-toolbar-items>
-      <v-btn @click.stop="drawerOpened = !drawerOpened" icon class="hidden-sm-and-up">
+
+      <v-btn v-if="!isDesktop" @click.stop="drawerOpened = !drawerOpened" icon>
         <v-icon>menu</v-icon>
       </v-btn>
     </v-toolbar>
@@ -37,13 +37,16 @@
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
+    props: {
+      isDesktop: Boolean
+    },
     data() {
       return {
         drawerOpened: false,
         menuItems: [
           {icon: 'album', title: 'Albums', route: 'albums'},
           {icon: 'star', title: 'Tribute', route: 'tribute'},
-          {icon: 'feedback', title: 'Other', route: 'other'}
+          {icon: 'add', title: 'More LP', route: 'other'}
         ]
       }
     }

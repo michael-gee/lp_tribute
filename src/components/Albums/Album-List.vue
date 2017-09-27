@@ -102,8 +102,8 @@
     padding: 25px;
   }
   #albums {
-    max-width: 1200px;
-    border-top: 1px solid #BDBDBD;
+    max-width: 1000px;
+    border-top: 1px solid white;
     border-radius: 5px;
     padding-bottom: 50px;
     margin: 0 auto;
@@ -113,7 +113,7 @@
   }
   .album {
     width: 100%;
-    border: 1px solid #BDBDBD;
+    border: 1px solid white;
     border-top: none;
     border-radius: 5px;
     display: flex;
@@ -130,4 +130,9 @@
       text-align: center;
       font-size: 1.8em;
     }
+  @media screen and (max-width: 600px) {
+    .album {
+      padding: 10px 0;
+    }
+  }
 </style>
