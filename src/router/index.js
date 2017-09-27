@@ -4,7 +4,12 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-export default new VueRouter({
+export const router = new VueRouter({
   routes,
+  scrollBehavior (to, from, savedPosition) {
+  return { x: 0, y: 0 }
+  },
   mode: 'history'
 })
+
+export default router;

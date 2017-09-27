@@ -24,7 +24,9 @@
           </div>
         </div>
 
-        <v-btn @click.native="$router.push('/albums')" id="albums-btn" large>See All Albums &#10140;</v-btn>
+        <v-btn @click="$router.push('/albums')" id="albums-btn" large>
+          See All Albums &#10140;
+        </v-btn>
       </section>
 
       <section id="featured-songs">
@@ -34,7 +36,9 @@
         <h4 id="other-features-title">Other Featured Songs...</h4>
 
         <v-layout id="other-featured-container">
-          <router-link tag="div" v-for="(song, index) in featuredSongs" to="/albums" :key="song.id" class="other-featured-wrapper">
+          <router-link tag="div" v-for="(song, index) in featuredSongs" :to="{ name: 'song', params: {
+            song: song.id
+            } }" :key="song.id" class="other-featured-wrapper">
             <img class="featured-song-img" src="../../assets/logos/lp-logo-md.png" :alt="song.name">
             <div class="featured-info">{{ song.name }}</div>
             <div style="margin-bottom: 25px;" class="featured-info">{{ song.year }}</div>
@@ -156,8 +160,8 @@
     padding-top: 50px;
   }
   #featured-iframe {
-    width: 100%;
-    height: 650px;
+    width: 1000px;
+    height: 600px;
     margin: 25px auto;
   }
   #other-features-title {
@@ -196,21 +200,21 @@
       rgba(0, 0, 0, .45)
       ), url('../../assets/layout/chester.jpg');
     }
-    #featured-iframe {
-      height: 525px;
-    }
   }
+    @media screen and (max-width: 960px) {
+      #featured-iframe {
+        width: 100%;
+        height: 450px;
+      }
+    }
   /* IPAD */
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     #intro {
       height: calc(100vh - 56px);
     }
     /* ALBUMS SECTION */
     #featured-albums, #featured-songs {
       padding: 25px 0;
-    }
-    #featured-iframe {
-      height: 300px;
     }
     #albums-wrapper {
       justify-content: space-around;
@@ -224,9 +228,12 @@
     }
   }
   /* PHONE */
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 600px) {
     .featured-song-img {
       width: 100px;
+    }
+    #featured-iframe {
+      height: 250px;
     }
   }
 </style>

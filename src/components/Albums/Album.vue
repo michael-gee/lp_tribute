@@ -80,12 +80,12 @@
         padding: 3px 0;
         text-align: center;
       }
-      .album-song:hover {
-        border-bottom: 1px solid white;
-      }
       .song-link {
         color: white;
         text-decoration: none;
+      }
+      .song-link:hover {
+        border-bottom: 1px solid white;
       }
     #album-buttons {
       padding: 50px 0;

@@ -11,15 +11,10 @@ const Album = resolve => {
   }, 'albums');
 }
 
-const SongList = resolve => {
-  require.ensure(['@/components/Songs/Song-List'], () => {
-    resolve(require('@/components/Songs/Song-List'));
-  }, 'songs');
-}
 const Song = resolve => {
   require.ensure(['@/components/Songs/Song'], () => {
     resolve(require('@/components/Songs/Song'));
-  }, 'songs');
+  });
 }
 
 const Tribute = resolve => {
@@ -27,9 +22,9 @@ const Tribute = resolve => {
     resolve(require('@/components/Views/Tribute'));
   });
 }
-const Feedback = resolve => {
-  require.ensure(['@/components/Views/Feedback'], () => {
-    resolve(require('@/components/Views/Feedback'));
+const Other = resolve => {
+  require.ensure(['@/components/Views/Other'], () => {
+    resolve(require('@/components/Views/Other'));
   });
 }
 
@@ -46,9 +41,9 @@ export const routes = [
     component: Tribute
   },
   {
-    path: '/feedback',
-    name: 'feedback',
-    component: Feedback
+    path: '/other',
+    name: 'other',
+    component: Other
   },
 
   {
@@ -63,11 +58,6 @@ export const routes = [
     component: Album
   },
 
-  {
-    path: '/songs',
-    name: 'songs',
-    component: SongList
-  },
   {
     path: '/song/:song',
     name: 'song',

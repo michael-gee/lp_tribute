@@ -23,7 +23,7 @@
       <v-toolbar-items>
         <v-btn @click="$router.push('/albums')" dark flat class="hidden-xs-only">Albums</v-btn>
         <v-btn @click="$router.push('/tribute')" dark flat class="hidden-xs-only">Tribute</v-btn>
-        <v-btn @click="$router.push('/feedback')" dark flat class="hidden-xs-only">Feedback</v-btn>
+        <v-btn @click="$router.push('/other')" dark flat class="hidden-xs-only">Other</v-btn>
       </v-toolbar-items>
       <v-btn @click.stop="drawerOpened = !drawerOpened" icon class="hidden-sm-and-up">
         <v-icon>menu</v-icon>
@@ -43,7 +43,7 @@
         menuItems: [
           {icon: 'album', title: 'Albums', route: 'albums'},
           {icon: 'star', title: 'Tribute', route: 'tribute'},
-          {icon: 'feedback', title: 'Feedback', route: 'feedback'}
+          {icon: 'feedback', title: 'Other', route: 'other'}
         ]
       }
     }
