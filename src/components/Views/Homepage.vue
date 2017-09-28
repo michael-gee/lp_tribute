@@ -47,12 +47,12 @@
       </section>
 
       <section id="extra-container">
-        <h4>Don't know what song to listen to? Generate Random Song</h4>
-        <v-btn class="random-btn" large>Random Song &#10140;</v-btn>
+        <h4>Don't know what song to listen to? Generate A Random Song!</h4>
+        <v-btn @click="generateSong" class="random-btn" large>Random Song &#10140;</v-btn>
         <h4>Other Links</h4>
         <v-btn @click="$router.push('/tribute')" class="random-btn" large>Tribute Page</v-btn>
         <v-btn @click="$router.push('/other')" class="random-btn" large>More Linkin Park</v-btn>
-        <v-btn class="random-btn" large>Star On Github</v-btn>
+        <v-btn href="https://github.com/michaelgee22/lp_tribute" target="_blank" class="random-btn" large>Star On Github</v-btn>
         <v-btn href="https://www.michaelgee.me/contact/" target="_blank" class="random-btn" large>Provide Feedback</v-btn>
         <br>
 
@@ -82,25 +82,25 @@
             alt: 'Meteora Album Cover',
             location: 'album',
             param: 'meteora',
-            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fmeteora.jpg?alt=media&token=cebc1895-153c-4346-9daa-b2eff7cd955f'
+            image: require('../../assets/layout/meteora.jpg')
           },
           {
             alt: 'Hybrid Theory Album Cover',
             location: 'album',
             param: 'hybrid-theory',
-            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fhybrid-theory.jpg?alt=media&token=d1d726b5-83bb-4e32-a3ed-f8be7373f1fd'
+            image: require('../../assets/layout/hybrid-theory.jpg')
           },
           {
             alt: 'One More Light Album Cover',
             location: 'album',
             param: 'one-more-light',
-            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fone-more-light.jpg?alt=media&token=7f17b3c5-a9ae-477e-98ff-e7ebace10052'
+            image: require('../../assets/layout/one-more-light.jpg')
           },
           {
             alt: 'Minutes To Midnight Album Cover',
             location: 'album',
             param: 'minutes-to-midnight',
-            image: 'https://firebasestorage.googleapis.com/v0/b/linkin-park-tribute.appspot.com/o/album-covers%2Fminutes-to-midnight.jpg?alt=media&token=8a5cf04f-0b4a-4002-9459-e68cecf3726d'
+            image: require('../../assets/layout/minutes-to-midnight.jpg')
           }
         ]
       }
@@ -110,10 +110,16 @@
         this.$refs.albums.scrollIntoView({block: "start", behaivor: 'smooth'});
       },
       backToTop() {
-        console.log(this);
+        window.scrollTo(0, 0);
       },
       generateSong(){
-
+        let randomSong = Math.ceil(Math.random() * 30);
+        this.$http.get(`random/${randomSong}.json`)
+          .then(response => {
+            return response.json();
+          }).then(data => {
+            this.$router.push(`/song/${data}`);
+          });
       }
     }
   }
@@ -226,7 +232,7 @@
   }
     .random-btn {
       margin-bottom: 25px;
-      font-size: 1.2em;
+      font-size: 1.4em;
     }
 
   #footer-text {

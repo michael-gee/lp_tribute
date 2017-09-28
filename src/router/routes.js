@@ -28,6 +28,12 @@ const Other = resolve => {
   });
 }
 
+const View404 = resolve => {
+  require.ensure(['@/components/Views/View-404'], () => {
+    resolve(require('@/components/Views/View-404'));
+  });
+}
+
 
 export const routes = [
   {
@@ -63,5 +69,15 @@ export const routes = [
     name: 'song',
     props: true,
     component: Song
+  },
+  {
+    path: '/404-route-not-found',
+    name: 'view404',
+    component: View404
+  },
+
+  {
+    path: '/*',
+    redirect: { name: 'view404'}
   }
 ];
