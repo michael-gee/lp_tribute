@@ -4,6 +4,8 @@
 
 A tribute to Linkin Park built with Vue.js, Vuetify, and Firebase.
 
+Link to project: https://linkin-park-tribute.firebaseapp.com/
+
 ## Build Setup
 
 ``` bash
