@@ -15,7 +15,7 @@
 
     <v-toolbar dark>
       <router-link tag="div" id="main-title" :to="{ name: 'homepage' }">
-        <v-toolbar-title>Linkin Park Tribute</v-toolbar-title>
+        <v-toolbar-title id="toolbar-title">Linkin Park Tribute</v-toolbar-title>
         <img id="lp-logo" src="../../assets/logos/lp-logo-sm.png" alt="Linkin Park Logo">
       </router-link>
       <v-spacer></v-spacer>
@@ -44,6 +44,7 @@
       return {
         drawerOpened: false,
         menuItems: [
+          {icon: 'home', title: 'Home', route: 'homepage'},
           {icon: 'album', title: 'Albums', route: 'albums'},
           {icon: 'star', title: 'Tribute', route: 'tribute'},
           {icon: 'add', title: 'More LP', route: 'other'}
@@ -56,10 +57,8 @@
 <style lang="css">
   #main-title {
     cursor: pointer;
-  }
-  .toolbar__title, #lp-logo {
-    display: inline-block;
-    padding-top: 3px;
+    display: flex;
+    align-items: center;
   }
     #lp-logo {
       width: 30px;

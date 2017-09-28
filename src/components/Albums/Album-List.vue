@@ -133,6 +133,8 @@
   @media screen and (max-width: 600px) {
     .album {
       padding: 10px 0;
+      border-left: none;
+      border-right: none;
     }
   }
 </style>
