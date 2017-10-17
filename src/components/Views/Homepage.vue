@@ -163,7 +163,7 @@
     background-color: #eee;
     color: black;
     text-align: center;
-    padding: 50px 0;
+    padding: 25px 0;
   }
   #albums-wrapper {
     display: flex;
@@ -172,7 +172,7 @@
   }
     .album-container {
       width: 45%;
-      margin: 50px 0;
+      margin: 25px 0;
     }
     .album-img {
       border-radius: 5px;

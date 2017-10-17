@@ -1,7 +1,7 @@
 <template lang="html">
   <header>
 
-    <v-navigation-drawer v-if="!isDesktop" v-model="drawerOpened" enable-resize-watcher temporary dark>
+    <v-navigation-drawer v-if="!isDesktop" v-model="drawerOpened" enable-resize-watcher temporary dark right>
       <v-list>
         <router-link tag="v-list-tile" v-for="item in menuItems" :key="item.route" :to="{ name:item.route}">
           <v-list-tile-action>

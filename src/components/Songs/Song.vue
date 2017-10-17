@@ -15,12 +15,18 @@
       <v-btn @click="$router.push('/')" large light>Return To Homepage</v-btn>
       <v-btn @click="$router.push('/albums')" large light>Return To Albums Page</v-btn>
       <v-btn @click="$router.push(`/album/${song.albumRoute}`)" large light>Return To Album</v-btn>
+      <v-btn @click="randomSong" large light>Next Random Song &#10140;</v-btn>
     </div>
   </div>
 </template>
 
 <script>
   export default {
+    data() {
+      return {
+        song: {}
+      }
+    },
     beforeRouteEnter(to, from, next) {
       let currentSong = to.params.song;
       next(vm => {
@@ -32,10 +38,25 @@
           });
       });
     },
-
-    data() {
-      return {
-        song: {}
+    beforeRouteUpdate(to, from, next) {
+      this.$http.get(`songs/${this.song}.json`)
+        .then(response => {
+          return response.json();
+        }).then(data => {
+          this.song = data;
+        });
+        next();
+    },
+    methods: {
+      randomSong() {
+        let randomSong = Math.ceil(Math.random() * 30);
+        this.$http.get(`random/${randomSong}.json`)
+          .then(response => {
+            return response.json();
+          }).then(data => {
+            this.song = data;
+            this.$router.push(`/song/${data}`);
+          });
       }
     }
   }
@@ -47,7 +68,7 @@
     flex-direction: column;
   }
   #song-intro {
-    padding: 25px;
+    padding: 15px;
     text-align: center;
   }
   #song-content {
@@ -61,7 +82,7 @@
     margin: 0 auto;
   }
   #song-btns {
-    margin-top: 50px;
+    margin: 50px 0;
     text-align: center;
   }
 
@@ -71,10 +92,16 @@
       height: 450px;
     }
   }
+  @media screen and (max-width: 768px) {
+    #song-btns {
+      display: flex;
+      flex-direction: column
+    }
+  }
 
   @media screen and (max-width: 600px) {
     #song-intro {
-      padding:  10px;
+      padding: 10px;
     }
     .song-heading {
       margin: 0;
