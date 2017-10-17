@@ -49,7 +49,7 @@
     },
     methods: {
       randomSong() {
-        let randomSong = Math.ceil(Math.random() * 30);
+        let randomSong = Math.ceil(Math.random() * 36);
         this.$http.get(`random/${randomSong}.json`)
           .then(response => {
             return response.json();
