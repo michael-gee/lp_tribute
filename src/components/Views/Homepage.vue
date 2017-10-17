@@ -163,7 +163,7 @@
     background-color: #eee;
     color: black;
     text-align: center;
-    padding: 25px 0;
+    padding: 30px 0;
   }
   #albums-wrapper {
     display: flex;
@@ -189,7 +189,7 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding-top: 50px;
+    padding-top: 36px;
   }
   #featured-iframe {
     width: 1000px;
@@ -198,7 +198,7 @@
   }
   #other-features-title {
     font-size: 2.4em;
-    margin-top: 25px;
+    margin-top: 5px;
     text-align: center;
   }
   #other-featured-container {
